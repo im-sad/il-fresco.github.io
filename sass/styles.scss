@@ -13,9 +13,9 @@ body {
   margin-left:auto;
   margin-right:auto;
   width:100%;
-  padding: 50px 20px;
+  padding: 20vh 20px;
   display:flex;
-  align-items:center;
+  align-items:flex-start;
   justify-content:center;
   min-height:100vh;
 }
@@ -26,11 +26,16 @@ body {
 
   &__title {
     font-weight:bold;
-    margin-bottom:40px;
+    margin-bottom:20px;
     display:block;
     font-size:16px;
-    font-family: Arial;
+    font-family: 'Trebuchet MS', Arial, sans-serif;
     cursor:default;
+  }
+
+  &__core {
+    position:relative;
+    padding-right:80px;
   }
 
   &__content {
@@ -40,16 +45,16 @@ body {
     padding:40px 20px;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.05);
     font-size: 22px;
-    font-family: 'Trebushet MS';
     line-height:1.4;
     font-style: italic;
     cursor:default;
+    font-family: serif;
 
     &::after {
       content: '';
       position:absolute;
       z-index:2;
-      left:50px;
+      left:40px;
       bottom:-20px;
       width:0;
       height:0;
@@ -59,20 +64,13 @@ body {
     }
   }
 
-  &__footer {
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-top:40px;
-  }
-
   &__foto {
     border-radius: 50%;
     width: 80px;
     height: 80px;
     overflow:hidden;
     background:#f1f1f1;
-    filter: blur(1);
+    margin-top:40px;
   }
 
   &__foto-img {
@@ -85,6 +83,9 @@ body {
 
 
 .reload {
+  position:absolute;
+  right:0;
+  top:0;
   background:#fff;
   width:40px;
   height:40px;
@@ -97,14 +98,13 @@ body {
   cursor:pointer;
   border:0;
   outline: none !important;
-  position:relative;
 
   &:hover &__icn {
     transform: rotate(360deg);
   }
 
   &:active {
-    bottom:-2px;
+    transform: translateY(2px);
   }
 
   &__icn {

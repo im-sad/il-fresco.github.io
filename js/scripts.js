@@ -79,8 +79,53 @@ const data = [
     about: 'про вопросы',
     text: 'Не всегда открытый вопрос описан предложением со знаком вопроса на конце.'
   },
-]
+  {
+    about: 'про новое поколение',
+    text: 'Вопросы ваши основаны на отсутствии понимания и молодости.'
+  },
+  {
+    about: 'про иллюзорность бытия',
+    text: 'Ты загоняешь себе в голову бессмысленный выдуманный мусор, а потом распространяешь его как правду'
+  },
+  {
+    about: 'про бумеров',
+    text: 'Мы чуть умнее чем вы думаете'
+  },
+  {
+    about: 'снисходителен',
+    text: 'Ты дурак? Совсем ебобо видимо'
+  },
+  {
+    about: 'о процессе человеческой деградации',
+    text: 'Банкротится мозг у тебя'
+  },
+  {
+    about: 'об экономике',
+    text: 'Чтобы пользоваться чьими-то деньгмаи - их надо сначала взять у человека. А деньгами которых нет - нельзя пользоваться'
+  },
+  {
+    about: 'о жизни',
+    text: 'У меня вообще все заебись, если честно'
+  },
+  {
+    about: 'об экзистенциальной составляющей',
+    text: 'В моменте'
+  },
+  {
+    about: 'держит всё под контролем',
+    text: 'Ну что там?'
+  },
+  {
+    about: 'о непостоянстве',
+    text: 'Хотя пиздеть ты горазд, а как до дела и фактов - сливаешься'
+  },
+  {
+    about: 'о ненадёжности',
+    text: 'Опять пропизделся'
+  },
+];
 
+const done = [];
 
 document.addEventListener('DOMContentLoaded', function() {
   const btn = document.getElementById('js-reload');
@@ -92,15 +137,30 @@ document.addEventListener('DOMContentLoaded', function() {
   getCite();
 
   function getCite() {
-    const citeNum = randomInteger(0, data.length - 1);
+    const citeNum = randomInteger(0, data.length - 1, done);
 
+    console.log(done)
+    console.log(citeNum)
+
+    done.push(citeNum)
     about.innerHTML = data[citeNum].about;
     content.innerHTML = data[citeNum].text;
+
+
+    if (done.length >= data.length) {
+      btn.style.display = 'none'
+      about.innerHTML = 'говорит';
+      content.innerHTML = 'Мне больше нечего сказать';
+    }
   }
 });
 
 
-function randomInteger(min, max) {
-  let rand = min + Math.random() * (max - min);
-  return Math.round(rand);
+function randomInteger(min, max, exp) {
+    var n,
+        exp = Array.isArray(exp) ? exp : [(isNaN(exp) ? min-1 : exp)];
+    while(true){
+        n = Math.floor(Math.random() * (max - min + 1)) + min;
+        if(exp.indexOf(n) < 0) return n;
+    }
 }
