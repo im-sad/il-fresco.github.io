@@ -1,32 +1,194 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <title>Иль Фреско - цитаты великого мыслителя</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
 
 <body>
-  <div class="page">
+  <input id="js-link" type="text" value="" readonly>
 
+  <div class="page">
     <div class="block">
       <b class="block__title">Иль Фреско <span id="js-about"></span>:</b>
       <div class="block__core">
         <div class="block__content" id="js-content"></div>
-        <button class="block__reload reload" id="js-reload">
-          <svg class="reload__icn" enable-background="new 0 0 50 50" height="50px" id="Layer_1" version="1.1" viewBox="0 0 50 50" width="50px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><rect fill="none" height="50" width="50"/><polyline fill="none" points="40,7 40,16   31,15.999 " stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/><path d="M41.999,25  c0,9.39-7.61,17-17,17s-17-7.61-17-17s7.61-17,17-17c5.011,0,9.516,2.167,12.627,5.616c0.618,0.686,1.182,1.423,1.683,2.203" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/></svg>
+        <button class="block__reload reload btn" id="js-reload">
+          <svg class="reload__icn icn" enable-background="new 0 0 50 50" height="50px" id="Layer_1" version="1.1" viewBox="0 0 50 50" width="50px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><rect fill="none" height="50" width="50"/><polyline fill="none" points="40,7 40,16   31,15.999 " stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/><path d="M41.999,25  c0,9.39-7.61,17-17,17s-17-7.61-17-17s7.61-17,17-17c5.011,0,9.516,2.167,12.627,5.616c0.618,0.686,1.182,1.423,1.683,2.203" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/></svg>
         </button>
+        <a class="block__share share btn" href="#" id="js-share" title="Скопировать ссылку">
+          <svg class="share__icn icn" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2"/></svg>
+        </a>
       </div>
 
 
-      <div class="block__foto">
-        <img class="block__foto-img" src="il.jpg" srcset="il@2x.jpg 2x" alt="Иль">
-      </div>
+      <picture class="block__foto">
+        <source type="image/webp" srcset="il@2x.webp 2x" />
+        <source type="image/webp" srcset="il.webp" />
+        <img class="block__foto-img" src="il.jpg" srcset="il@2x.jpg 2x" alt="Иль Фреско">
+      </picture>
     </div>
+
+
+    <footer class="footer">
+      Made with <span class="footer__heart">❤</span>
+    </footer>
   </div>
 
+  <div class="all" id="js-sidebar">
+    <ul class="all__list" id="js-all-list"></ul>
+    <button class="all__menu menu" id="js-menu"></button>
+  </div>
+  <div class="done" id="js-done">Copied!</div>
 
+
+  <script>
+    const data = [
+      {
+        about: 'о зарплате',
+        text: 'Ну только если хуй в жопу, а бабки через год.'
+      },
+      {
+        about: 'о капитализме',
+        text: 'Если у компании нет денег и ничего более, то их нет.'
+      },
+      {
+        about: 'о времени',
+        text: 'Все произойдет ровно тогда когда сможет произойти.'
+      },
+      {
+        about: 'о самостоятельности',
+        text: 'Научись задавать правильные вопросы самому себе и будешь получать правильные ответы от других.'
+      },
+      {
+        about: 'об утрате',
+        text: 'Потери уже свершились. Больше они уже быть не могут.'
+      },
+      {
+        about: 'о бесмысленности бытия',
+        text: 'Все уже написано 10 раз, вопросы заданы. Ответы я не получил.'
+      },
+      {
+        about: 'об ошибках',
+        text: 'Не ошибается только тот, кто ничего не делает.'
+      },
+      {
+        about: 'о готовности дискутировать',
+        text: 'Жду вопросов и дам ответы.'
+      },
+      {
+        about: 'о тупике полемики',
+        text: 'Остановите поезд, я сойду.'
+      },
+      {
+        about: 'о зависти',
+        text: 'Тебе не понять, что такое обещание и ответсвенность.'
+      },
+      {
+        about: 'о человеческой глупости',
+        text: 'Ты самый тупой - это другое.'
+      },
+      {
+        about: 'о способности делиться',
+        text: 'Все ради тебя, чтобы твою голову ебучую только зря не тревожить.'
+      },
+      {
+        about: 'о самодисциплине',
+        text: 'Оправдания, они как задница - найдутся у каждого.'
+      },
+      {
+        about: 'о деньгах',
+        text: 'Деньги будут завтра, ну край в пятницу!'
+      },
+      {
+        about: 'о неприятелях',
+        text: 'Кто же из вас такой трус, такое ничтожное существо, что опускается до такого?'
+      },
+      {
+        about: 'об относительности сущего',
+        text: 'Под определенным углом и земля плоская.'
+      },
+      {
+        about: 'о людях',
+        text: 'Вы живете в каком-то своем мире, полным предрассудков и заблуждений.'
+      },
+      {
+        about: 'о дедлайнах',
+        text: 'Сколько десятков раз я слушал: «будет готово в понедельник», и не было сделано НИКОГДА.'
+      },
+      {
+        about: 'про обязательства',
+        text: 'Взялся - тяни.'
+      },
+      {
+        about: 'про вопросы',
+        text: 'Не всегда открытый вопрос описан предложением со знаком вопроса на конце.'
+      },
+      {
+        about: 'про новое поколение',
+        text: 'Вопросы ваши основаны на отсутствии понимания и молодости.'
+      },
+      {
+        about: 'про иллюзорность бытия',
+        text: 'Ты загоняешь себе в голову бессмысленный выдуманный мусор, а потом распространяешь его как правду.'
+      },
+      {
+        about: 'про старшее поколение',
+        text: 'Мы чуть умнее чем вы думаете.'
+      },
+      {
+        about: 'об оппонентах',
+        text: 'Ты дурак? Совсем ебобо видимо.'
+      },
+      {
+        about: 'о процессе человеческой деградации',
+        text: 'Банкротится мозг у тебя.'
+      },
+      {
+        about: 'об экономической составляющей',
+        text: 'Чтобы пользоваться чьими-то деньгами - их надо сначала взять у человека. А деньгами которых нет - нельзя пользоваться.'
+      },
+      {
+        about: 'о жизни',
+        text: 'У меня вообще все заебись, если честно.'
+      },
+      {
+        about: 'об экзистенциальной составляющей',
+        text: 'В моменте.'
+      },
+      {
+        about: 'о методах мониторинга и контроля',
+        text: 'Ну что там?'
+      },
+      {
+        about: 'о непостоянстве',
+        text: 'Хотя пиздеть ты горазд, а как до дела и фактов - сливаешься.'
+      },
+      {
+        about: 'о ненадёжности',
+        text: 'Опять пропизделся.'
+      },
+      {
+        about: 'о труде',
+        text: 'Я пил и ел. А еще, я заработал прилично.'
+      },
+      {
+        about: 'о материальных ценностях',
+        text: 'Я узнаю о приходе денег и суммах за час до того, как они появляются.'
+      },
+      {
+        about: 'о тщетности временных ограничений',
+        text: 'Я понимаю, что вам нужны сроки. Но придумать и взять их из головы я не могу и не хочу.'
+      },
+      {
+        about: 'о плохом человеке',
+        text: 'Он человек-говно.'
+      },
+    ];
+  </script>
   <script type="text/javascript" src="js/scripts.js"></script>
 </body>
 </html>
